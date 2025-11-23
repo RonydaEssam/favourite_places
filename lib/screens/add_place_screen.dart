@@ -12,10 +12,17 @@ class AddPlaceScreen extends StatefulWidget {
 
 class AddPlaceScreenState extends State<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
-  final addedPlaces = [];
+  final List<String> addedPlaces = [];
+  var _enteredPlace = '';
 
   void _addPlace() {
     if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      addedPlaces.add(_enteredPlace);
+      print(_enteredPlace);
+      print(addedPlaces);
+
       Navigator.of(context).pop();
 
       ScaffoldMessenger.of(
@@ -29,7 +36,7 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add new place:')),
+      appBar: AppBar(title: Text('Add new place')),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -44,6 +51,9 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
                     return 'Please add a valid name.';
                   }
                   return null;
+                },
+                onSaved: (place) {
+                  _enteredPlace = place!;
                 },
               ),
               const SizedBox(height: 20),
