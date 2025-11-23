@@ -13,21 +13,17 @@ class AddPlaceScreen extends StatefulWidget {
 class AddPlaceScreenState extends State<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   final addedPlaces = [];
-  late Place place;
 
   void _addPlace() {
-    Navigator.of(context).pop();
-    /*
     if (_formKey.currentState!.validate()) {
-      addedPlaces.add(place);
-
-      
+      Navigator.of(context).pop();
 
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Saving data')));
+      ).showSnackBar(
+        SnackBar(content: Text('Added a new place to your list.')),
+      );
     }
-    */
   }
 
   @override
@@ -51,10 +47,22 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: _addPlace,
-                icon: Icon(Icons.add),
-                label: Text('Add place'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Cancel'),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton.icon(
+                    onPressed: _addPlace,
+                    icon: Icon(Icons.add),
+                    label: Text('Add place'),
+                  ),
+                ],
               ),
             ],
           ),
