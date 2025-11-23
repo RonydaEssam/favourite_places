@@ -1,3 +1,4 @@
+import 'package:favourite_places/screens/add_place_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -8,10 +9,21 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Favourite Places'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => AddPlaceScreen()));
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) {},
+        itemBuilder: (context, index) {
+          return;
+        },
       ),
     );
   }
