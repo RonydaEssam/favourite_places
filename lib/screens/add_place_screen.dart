@@ -12,16 +12,14 @@ class AddPlaceScreen extends StatefulWidget {
 
 class AddPlaceScreenState extends State<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> addedPlaces = [];
+  final List<Place> addedPlaces = [];
   var _enteredPlace = '';
 
   void _addPlace() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      addedPlaces.add(_enteredPlace);
-      print(_enteredPlace);
-      print(addedPlaces);
+      addedPlaces.add(Place(name: _enteredPlace));
 
       Navigator.of(context).pop();
 

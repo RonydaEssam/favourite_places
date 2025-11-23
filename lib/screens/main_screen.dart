@@ -1,7 +1,5 @@
 import 'package:favourite_places/Widgets/places_list.dart';
-import 'package:favourite_places/models/place.dart';
 import 'package:favourite_places/screens/add_place_screen.dart';
-import 'package:favourite_places/screens/place_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {

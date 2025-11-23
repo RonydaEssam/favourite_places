@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PlaceDetailsScreen extends StatelessWidget {
-  PlaceDetailsScreen({super.key, required this.title});
+  const PlaceDetailsScreen({super.key, required this.title});
 
-  String title;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
