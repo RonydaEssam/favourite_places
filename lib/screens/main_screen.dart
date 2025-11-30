@@ -15,7 +15,9 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.of(
                 context,
-              ).push(MaterialPageRoute(builder: (context) => AddPlaceScreen()));
+              ).push(
+                MaterialPageRoute(builder: (context) => const AddPlaceScreen()),
+              );
             },
             icon: Icon(Icons.add),
           ),

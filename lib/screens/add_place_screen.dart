@@ -12,8 +12,15 @@ class AddPlaceScreen extends StatefulWidget {
 
 class AddPlaceScreenState extends State<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _titleController = TextEditingController();
   final List<Place> addedPlaces = [];
   var _enteredPlace = '';
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   void _addPlace() {
     if (_formKey.currentState!.validate()) {
@@ -35,21 +42,30 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Add new place')),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12),
+        child: Form(
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Place name'),
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                  ),
+                ),
                 maxLength: 50,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length > 50) {
                     return 'Please add a valid name.';
                   }
                   return null;
                 },
+                controller: _titleController,
                 onSaved: (place) {
                   _enteredPlace = place!;
                 },
@@ -62,13 +78,13 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text('Cancel'),
+                    child: const Text('Cancel'),
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: _addPlace,
-                    icon: Icon(Icons.add),
-                    label: Text('Add place'),
+                    icon: const Icon(Icons.add),
+                    label: const Text('Add place'),
                   ),
                 ],
               ),
