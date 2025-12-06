@@ -1,19 +1,19 @@
-import 'package:favourite_places/models/place.dart';
+import 'package:favourite_places/Providers/user_places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlaceScreen extends StatefulWidget {
+class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
 
   @override
-  State<AddPlaceScreen> createState() {
+  ConsumerState<AddPlaceScreen> createState() {
     return AddPlaceScreenState();
   }
 }
 
-class AddPlaceScreenState extends State<AddPlaceScreen> {
+class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
-  final List<Place> addedPlaces = [];
   var _enteredPlace = '';
 
   @override
@@ -26,7 +26,8 @@ class AddPlaceScreenState extends State<AddPlaceScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      addedPlaces.add(Place(name: _enteredPlace));
+      _enteredPlace = _titleController.text;
+      ref.read(userPlacesProvider.notifier).addPlace(_enteredPlace);
 
       Navigator.of(context).pop();
 

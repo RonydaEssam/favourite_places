@@ -3,16 +3,12 @@ import 'package:favourite_places/screens/place_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class PlacesList extends StatelessWidget {
-  const PlacesList({super.key});
+  const PlacesList({super.key, required this.placesList});
+
+  final List<Place> placesList;
 
   @override
   Widget build(BuildContext context) {
-    List<Place> placesList = [
-      Place(name: 'Home'),
-      Place(name: 'Work'),
-      Place(name: 'Farm'),
-    ];
-
     if (placesList.isEmpty) {
       return Center(
         child: Text(
