@@ -36,7 +36,7 @@ class PlacesList extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) =>
-                        PlaceDetailsScreen(title: placesList[index].name),
+                        PlaceDetailsScreen(place: placesList[index]),
                   ),
                 );
               },

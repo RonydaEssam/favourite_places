@@ -1,4 +1,5 @@
 import 'package:favourite_places/Providers/user_places.dart';
+import 'package:favourite_places/Widgets/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,9 +51,14 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Name',
+                decoration: InputDecoration(
+                  label: const Text('Name'),
                   border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.6),
+                    ),
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                   ),
                 ),
@@ -71,6 +77,8 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                   _enteredPlace = place!;
                 },
               ),
+              const SizedBox(height: 10),
+              ImageInput(),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
