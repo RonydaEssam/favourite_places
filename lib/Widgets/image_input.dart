@@ -10,6 +10,8 @@ class ImageInput extends StatefulWidget {
 }
 
 class _ImageInputState extends State<ImageInput> {
+  void _addPicture() {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +26,7 @@ class _ImageInputState extends State<ImageInput> {
       width: double.infinity,
       alignment: Alignment.center,
       child: TextButton.icon(
-        onPressed: () {},
+        onPressed: _addPicture,
         label: const Text('Take Picture'),
         icon: const Icon(Icons.camera),
       ),

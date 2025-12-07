@@ -55,6 +55,7 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                   label: const Text('Name'),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
+                      width: 1,
                       color: Theme.of(
                         context,
                       ).colorScheme.primary.withValues(alpha: 0.6),
