@@ -60,7 +60,7 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                         context,
                       ).colorScheme.primary.withValues(alpha: 0.6),
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                 ),
                 maxLength: 50,
