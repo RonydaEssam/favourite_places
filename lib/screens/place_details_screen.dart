@@ -12,13 +12,13 @@ class PlaceDetailsScreen extends StatelessWidget {
       appBar: AppBar(title: Text(place.name)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: Stack(
           children: [
-            Text(
-              'Location: ',
-              style: TextTheme.of(
-                context,
-              ).bodyLarge!.copyWith(color: Colors.white),
+            Image.file(
+              place.image,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
             ),
           ],
         ),
