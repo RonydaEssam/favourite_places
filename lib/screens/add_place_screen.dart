@@ -2,6 +2,7 @@ import 'package:favourite_places/Providers/user_places.dart';
 import 'package:favourite_places/Widgets/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:io';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
@@ -16,6 +17,7 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   var _enteredPlace = '';
+  File? _selectedImage;
 
   @override
   void dispose() {
@@ -27,8 +29,14 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      if (_enteredPlace.isEmpty || _selectedImage == null) {
+        return;
+      }
+
       _enteredPlace = _titleController.text;
-      ref.read(userPlacesProvider.notifier).addPlace(_enteredPlace);
+      ref
+          .read(userPlacesProvider.notifier)
+          .addPlace(_enteredPlace, _selectedImage!);
 
       Navigator.of(context).pop();
 
@@ -79,7 +87,7 @@ class AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                 },
               ),
               const SizedBox(height: 10),
-              ImageInput(),
+              ImageInput(onPickImage: (image) => _selectedImage = image),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
