@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:favourite_places/models/place.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -50,12 +50,15 @@ class _LocationInputState extends State<LocationInput> {
     final lat = locationData.latitude;
     final lng = locationData.longitude;
 
+    await dotenv.load(fileName: '.env');
+    final apiKey = dotenv.get('API_KEY');
+
     if (lat == null || lng == null) {
       return;
     }
 
     final url = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=AIzaSyCiYRqDOseI_kpLDvLbWJEh3bJ14BVfADY',
+      'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey',
     );
 
     final response = await http.get(url);
