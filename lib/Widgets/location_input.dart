@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'dart:io';
+import 'package:favourite_places/Widgets/secrets.dart';
 import 'package:favourite_places/models/place.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -50,8 +51,7 @@ class _LocationInputState extends State<LocationInput> {
     final lat = locationData.latitude;
     final lng = locationData.longitude;
 
-    await dotenv.load(fileName: '.env');
-    final apiKey = dotenv.get('API_KEY');
+    final apiKey = Secrets.apiKey;
 
     if (lat == null || lng == null) {
       return;
