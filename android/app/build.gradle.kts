@@ -1,3 +1,11 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -28,6 +36,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        buildConfigField("String", "GOOGLE_MAPS_API_KEY", "\"${localProperties['google.maps.api.key']}\"")
+        manifestPlaceholders = [googleMapsApiKey: localProperties['google.maps.api.key']]
     }
 
     buildTypes {
